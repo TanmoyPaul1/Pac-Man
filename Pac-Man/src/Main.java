@@ -18,6 +18,7 @@ public class Main {
 		label.setVisible(true);
 		label.setForeground(Color.YELLOW);
 		frame.add(label);
+		System.out.println("");
 	}
 }
 

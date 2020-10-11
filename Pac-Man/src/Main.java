@@ -21,6 +21,7 @@ public class Main
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); 
 		frame.getContentPane().setBackground(Color.BLACK); 
 		frame.setLayout(null); 
+		System.out.print("GHSGHG");
 		
 		//Creates the enter name text. 
 		nameLabel = new JLabel("Enter your name:"); 

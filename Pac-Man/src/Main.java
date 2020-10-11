@@ -22,6 +22,7 @@ public class Main
 		frame.getContentPane().setBackground(Color.BLACK); 
 		frame.setLayout(null); 
 		System.out.print("GHSGHG");
+		System.out.print("PULLING TEST");
 		
 		//Creates the enter name text. 
 		nameLabel = new JLabel("Enter your name:"); 

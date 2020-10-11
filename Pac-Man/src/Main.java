@@ -58,5 +58,5 @@ public class Main
 				PacManLabel.setVisible(false); 
 			} 
 		} ); 
-		} 
+	} 
 }

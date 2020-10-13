@@ -1,97 +1,134 @@
-import java.awt.Color; 
-import javax.swing.*; 
-import java.awt.*; 
-import java.awt.event.*; 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Main 
-{ 
-	private static JFrame frame; 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+public class Main
+{
+	public static JFrame frame = new JFrame();
+	public static JPanel panel = new JPanel();
 	private static JLabel PacManLabel, nameLabel, nameLabel2; 
 	private static JTextField nameText; 
-	private static JButton startButton; 
+	private static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
 	
-	public static void makeStartingPage() 
-	{ 
-		frame = new JFrame("Pac-Man"); 
-		frame.setSize(700,500); 
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); 
-		frame.getContentPane().setBackground(Color.BLACK); 
-		frame.setLayout(null); 
+	public static void main(String args[])
+	{
+		makeHomePage();
+		//makeMap();
+	}
+	
+	public static void makeHomePage()
+	{
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setSize(700,500);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		frame.add(panel);
+		frame.setFocusable(true);
+		frame.add(panel);
+		panel.setBackground(Color.BLACK);
+		panel.setLayout(null);
 		
-		//Creates the enter name text. 
+		panel.add(startButton);
+		startButton.setBounds(100,300,500,115); 
+		
 		nameLabel = new JLabel("Enter your name:"); 
 		nameLabel.setBounds(263,150,200,50); 
 		nameLabel.setFont(new Font("", Font.PLAIN, 20)); 
 		nameLabel.setForeground(Color.RED); 
+		panel.add(nameLabel);
 		
-		//Creates text window to enter name in. 
-		nameText = new JTextField(""); 
-		nameText.setBounds(250,200,200,50); 
-		nameText.setVisible(true); 
-		nameText.setForeground(Color.RED); 
-		
-		//Creates the start button. 
-		startButton = new JButton(new ImageIcon("images/start.png")); 
-		startButton.setBounds(100,300,500,115); 
-		
-		//Creates the Pac-Man text.
-		PacManLabel = new JLabel("Pac-Man"); 
+		nameText = new JTextField("");
+		panel.add(nameText);
+		nameText.setBounds(250,200,200,20);
+		 
+		PacManLabel = new JLabel("Pac-Man");
+		panel.add(PacManLabel);
 		PacManLabel.setBounds(193,20,400,50); 
 		PacManLabel.setFont(new Font("", Font.BOLD, 70)); 
 		PacManLabel.setForeground(Color.YELLOW); 
 		
-		//Adds all necessary components of the starting page. 
-		frame.add(nameText); 
-		frame.add(nameLabel); 
-		frame.add(startButton); 
-		frame.add(PacManLabel); 
-		frame.setLocationRelativeTo(null); 
-		frame.revalidate(); 
-		frame.setVisible(true); 
 		startButton.addActionListener(new ActionListener() 
 		{ 
 			public void actionPerformed(ActionEvent e) 
 			{ 
-				nameText.setVisible(false); 
-				nameLabel.setVisible(false); 
-				startButton.setVisible(false); 
-				PacManLabel.setVisible(false); 
-				map();
+				startButton.setVisible(false);  
+				nameText.setVisible(false);
+				nameLabel.setVisible(false);
+				PacManLabel.setVisible(false);
+				makeMap();
 			} 
 		} ); 
-	} 
+	}
 	
-	public static void map()
+	public static void makeMap()
 	{
-		//Welcomes the user with their entered name. 
-		String s1 = nameText.getText();
-		nameLabel2 = new JLabel("Welcome " + s1 + "!", SwingConstants.CENTER); 
-		nameLabel2.setBounds(100,5,500,50); 
-		nameLabel2.setFont(new Font("", Font.PLAIN, 25)); 
-		nameLabel2.setForeground(Color.RED); 
-		nameLabel2.setVisible(true); 
-		frame.add(nameLabel2);
-		
-		//Creates map borders.
-		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
+		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
+		panel.add(topBorder1);
 		topBorder1.setBounds(0,45,700,10); 
-		topBorder1.revalidate();
-		frame.add(topBorder1);
 		
 		JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
+		panel.add(bottomBorder1);
 		bottomBorder1.setBounds(0,400,700,10); 
-		frame.add(bottomBorder1);
 		
 		JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+		panel.add(sideBorder1);
 		sideBorder1.setBounds(100,45,10,365); 
-		frame.add(sideBorder1);
 		
 		JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+		panel.add(sideBorder2);
 		sideBorder2.setBounds(585,45,10,365); 
-		frame.add(sideBorder2);
+		
+		JLabel pacMan = new JLabel(new ImageIcon("images/PacMan.gif")); 
+		panel.add(pacMan);
+		pacMan.setBounds(50,100,400,365); 
+		
+		
+		frame.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				if(arg0.getKeyCode() == KeyEvent.VK_UP)
+				{
+					pacMan.setBounds(pacMan.getX(),pacMan.getY() - 5,400,365); 
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_DOWN)
+				{
+					pacMan.setBounds(pacMan.getX(),pacMan.getY() + 5,400,365); 
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_RIGHT)
+				{
+					pacMan.setBounds(pacMan.getX() + 5,pacMan.getY(),400,365); 
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_LEFT)
+				{
+					pacMan.setBounds(pacMan.getX() - 5,pacMan.getY(),400,365); 
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
-	public static void main(String args[]) 
-	{ 
-		makeStartingPage(); 
-	} 
 }
+

@@ -24,7 +24,6 @@ public class Main
 	public static void main(String args[])
 	{
 		makeHomePage();
-		//makeMap();
 	}
 	
 	public static void makeHomePage()
@@ -75,19 +74,19 @@ public class Main
 	{
 		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
 		panel.add(topBorder1);
-		topBorder1.setBounds(0,45,700,10); 
+		topBorder1.setBounds(-110,0,1000,10); 
 		
 		JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
 		panel.add(bottomBorder1);
-		bottomBorder1.setBounds(0,400,700,10); 
+		bottomBorder1.setBounds(-110,453,1000,10); 
 		
 		JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder1);
-		sideBorder1.setBounds(100,45,10,365); 
+		sideBorder1.setBounds(0,0,10,500); 
 		
 		JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder2);
-		sideBorder2.setBounds(585,45,10,365); 
+		sideBorder2.setBounds(690,0,10,500); 
 		
 		JLabel pacMan = new JLabel(new ImageIcon("images/PacMan.gif")); 
 		panel.add(pacMan);

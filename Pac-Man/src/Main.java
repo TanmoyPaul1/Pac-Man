@@ -1,26 +1,17 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*; 
+import java.awt.*; 
+import java.awt.event.*;
 
 public class Main
 {
+	//Initializes all required objects
 	public static JFrame frame = new JFrame();
 	public static JPanel panel = new JPanel();
-	private static JLabel PacManLabel, nameLabel, nameLabel2; 
+	private static JLabel PacManLabel, nameLabel; 
 	private static JTextField nameText; 
 	private static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
-	
+	private static int X, Y;
+
 	public static void main(String args[])
 	{
 		makeHomePage();
@@ -49,7 +40,7 @@ public class Main
 		
 		nameText = new JTextField("");
 		panel.add(nameText);
-		nameText.setBounds(250,200,200,20);
+		nameText.setBounds(250,200,200,30);
 		 
 		PacManLabel = new JLabel("Pac-Man");
 		panel.add(PacManLabel);
@@ -69,51 +60,101 @@ public class Main
 			} 
 		} ); 
 	}
-	
+//	public static int x_coord(JLabel R, JLabel L)
+//	{
+//		if(R.isVisible())
+//			return R.getX();
+//		if(L.isVisible())
+//			return L.getX();
+//		return 0;
+//	}
+//	public static int y_coord(JLabel U, JLabel D)
+//	{
+//		if(U.isVisible())
+//			return U.getY();
+//		if(D.isVisible())
+//			return D.getY();
+//		return 0;
+//	}
 	public static void makeMap()
 	{
+		//Outputs the Welcome name! message
+		String s1 = nameText.getText();
+		JOptionPane.showMessageDialog(nameText,"Welcome " + s1 + "!", "Pac-Man", 1); 
+		
+		//All borders in main game
 		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
 		panel.add(topBorder1);
-		topBorder1.setBounds(-110,0,1000,10); 
+		topBorder1.setBounds(-110,0,800,10); 
 		
 		JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
 		panel.add(bottomBorder1);
-		bottomBorder1.setBounds(-110,453,1000,10); 
+		bottomBorder1.setBounds(-110,453,800,10); 
 		
 		JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder1);
-		sideBorder1.setBounds(0,0,10,500); 
+		sideBorder1.setBounds(0,0,10,463); 
 		
 		JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder2);
-		sideBorder2.setBounds(690,0,10,500); 
+		sideBorder2.setBounds(690,0,10,463); 
 		
-		JLabel pacMan = new JLabel(new ImageIcon("images/PacMan.gif")); 
-		panel.add(pacMan);
-		pacMan.setBounds(50,100,400,365); 
-		
+		//Adds 4 PacMans facing different directions
+		JLabel pacman_right = new JLabel(new ImageIcon("images/pacman_right.gif")); 
+		JLabel pacman_left = new JLabel(new ImageIcon("images/pacman_left.gif")); 
+		JLabel pacman_up = new JLabel(new ImageIcon("images/pacman_up.gif")); 
+		JLabel pacman_down = new JLabel(new ImageIcon("images/pacman_down.gif")); 
+		pacman_right.setBounds(150, 90,400,365);
+		panel.add(pacman_right); panel.add(pacman_left); 
+		panel.add(pacman_up); 	 panel.add(pacman_down);
+		X = 330; Y = 250;
 		
 		frame.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				if(arg0.getKeyCode() == KeyEvent.VK_UP)
-				{
-					pacMan.setBounds(pacMan.getX(),pacMan.getY() - 5,400,365); 
-				}
-				if(arg0.getKeyCode() == KeyEvent.VK_DOWN)
-				{
-					pacMan.setBounds(pacMan.getX(),pacMan.getY() + 5,400,365); 
-				}
 				if(arg0.getKeyCode() == KeyEvent.VK_RIGHT)
 				{
-					pacMan.setBounds(pacMan.getX() + 5,pacMan.getY(),400,365); 
+					pacman_right.setVisible(true);
+					pacman_left.setVisible(false);
+					pacman_up.setVisible(false);
+					pacman_down.setVisible(false);
+					
+					X += 5;
+					pacman_right.setBounds( X, Y, 42, 42); 
 				}
 				if(arg0.getKeyCode() == KeyEvent.VK_LEFT)
 				{
-					pacMan.setBounds(pacMan.getX() - 5,pacMan.getY(),400,365); 
+					pacman_right.setVisible(false);
+					pacman_left.setVisible(true);
+					pacman_up.setVisible(false);
+					pacman_down.setVisible(false);
+					
+					X -= 5;
+					pacman_left.setBounds(X, Y, 42, 42); 
 				}
+				if(arg0.getKeyCode() == KeyEvent.VK_UP)
+				{
+					pacman_right.setVisible(false);
+					pacman_left.setVisible(false);
+					pacman_up.setVisible(true);
+					pacman_down.setVisible(false);
+					
+					Y -= 5;
+					pacman_up.setBounds(X, Y, 42, 42); 
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_DOWN)
+				{
+					pacman_right.setVisible(false);
+					pacman_left.setVisible(false);
+					pacman_up.setVisible(false);
+					pacman_down.setVisible(true);
+					
+					Y += 5;
+					pacman_down.setBounds(X, Y, 42, 42); 
+				}
+				
 			}
 
 			@Override
@@ -128,6 +169,8 @@ public class Main
 				
 			}
 		});
+		
 	}
+	
 }
 

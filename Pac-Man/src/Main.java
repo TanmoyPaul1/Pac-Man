@@ -1,16 +1,18 @@
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Main
 {
 	//Initializes all required objects
 	public static JFrame frame = new JFrame();
 	public static JPanel panel = new JPanel();
-	private static JLabel PacManLabel, nameLabel; 
-	private static JTextField nameText; 
-	private static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
-	private static int X, Y;
+	public static JLabel PacManLabel, nameLabel; 
+	public static JTextField nameText; 
+	public static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
+	static ArrayList<Map> borders = new ArrayList<Map>();
+	public static int X, Y;
 
 	public static void main(String args[])
 	{
@@ -82,7 +84,18 @@ public class Main
 		String s1 = nameText.getText();
 		JOptionPane.showMessageDialog(nameText,"Welcome " + s1 + "!", "Pac-Man", 1); 
 		
-		//All borders in main game
+		// Adding maze borders with a loop using Map class objects
+		for(int i = 100; i <= 1000; i++)
+		{
+			borders.add(new Map("images/horizontalBorder.png",0,i,100,10));
+			i += 99;
+		}
+			borders.add(new Map("images/horizontalBorder.png",150,0,10,300));
+			borders.add(new Map("images/horizontalBorder.png",150,350,10,350));
+			borders.add(new Map("images/horizontalBorder.png",300,0,10,300));
+			borders.add(new Map("images/horizontalBorder.png",300,350,10,350));
+		
+		//Side Borders in the map
 		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
 		panel.add(topBorder1);
 		topBorder1.setBounds(-110,0,800,10); 
@@ -121,7 +134,14 @@ public class Main
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(false);
 					
-					X += 5;
+					if(X >= 648)
+					{
+						X = 648;
+					}
+					else
+					{
+						X += 5;
+					}
 					pacman_right.setBounds( X, Y, 42, 42); 
 				}
 				if(arg0.getKeyCode() == KeyEvent.VK_LEFT)
@@ -131,7 +151,14 @@ public class Main
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(false);
 					
-					X -= 5;
+					if(X <= 10)
+					{
+						X = 10;
+					}
+					else
+					{
+						X -= 5;
+					}
 					pacman_left.setBounds(X, Y, 42, 42); 
 				}
 				if(arg0.getKeyCode() == KeyEvent.VK_UP)
@@ -141,7 +168,14 @@ public class Main
 					pacman_up.setVisible(true);
 					pacman_down.setVisible(false);
 					
-					Y -= 5;
+					if(Y <= 10)
+					{
+						Y = 10;
+					}
+					else
+					{
+						Y -= 5;
+					}
 					pacman_up.setBounds(X, Y, 42, 42); 
 				}
 				if(arg0.getKeyCode() == KeyEvent.VK_DOWN)
@@ -151,7 +185,14 @@ public class Main
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(true);
 					
-					Y += 5;
+					if(Y >= 411)
+					{
+						Y = 411;
+					}
+					else
+					{
+						Y += 5;
+					}
 					pacman_down.setBounds(X, Y, 42, 42); 
 				}
 				

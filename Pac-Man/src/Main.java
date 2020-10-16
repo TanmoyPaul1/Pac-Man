@@ -62,22 +62,6 @@ public class Main
 			} 
 		} ); 
 	}
-//	public static int x_coord(JLabel R, JLabel L)
-//	{
-//		if(R.isVisible())
-//			return R.getX();
-//		if(L.isVisible())
-//			return L.getX();
-//		return 0;
-//	}
-//	public static int y_coord(JLabel U, JLabel D)
-//	{
-//		if(U.isVisible())
-//			return U.getY();
-//		if(D.isVisible())
-//			return D.getY();
-//		return 0;
-//	}
 	public static void makeMap()
 	{
 		//Outputs the Welcome name! message
@@ -91,10 +75,14 @@ public class Main
 			borders.add(new Map("images/horizontalBorder.png",0,i,100,10));
 			i += 99;
 		}
-			borders.add(new Map("images/horizontalBorder.png",150,0,10,300));
-			borders.add(new Map("images/horizontalBorder.png",150,350,10,350));
-			borders.add(new Map("images/horizontalBorder.png",300,0,10,300));
-			borders.add(new Map("images/horizontalBorder.png",300,350,10,350));
+		
+		borders.add(new Map("images/horizontalBorder.png",150,0,10,300));
+		borders.add(new Map("images/horizontalBorder.png",150,350,10,350));
+		borders.add(new Map("images/horizontalBorder.png",300,0,10,300));
+		borders.add(new Map("images/horizontalBorder.png",300,350,10,350));
+		
+		//Adding enemies in the board
+		
 		
 		//Side Borders in the map
 		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
@@ -123,6 +111,7 @@ public class Main
 		panel.add(pacman_up); 	 panel.add(pacman_down);
 		X = 330; Y = 250;
 		
+		Enemies enemy = new Enemies();
 		frame.addKeyListener(new KeyListener() {
 
 			@Override
@@ -215,4 +204,3 @@ public class Main
 	}
 	
 }
-

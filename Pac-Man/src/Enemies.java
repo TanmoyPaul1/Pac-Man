@@ -6,8 +6,8 @@ import java.util.TimerTask;
 
 public class Enemies extends Main
 {
-	public static JLabel red, pink, cyan, orange;
-	public static int redX=280, redY=200, pinkX=310, pinkY=200, 
+	private static JLabel red, pink, cyan, orange;
+	private static int redX=280, redY=200, pinkX=310, pinkY=200, 
 				cyanX=340, cyanY=200, orangeX=370, orangeY=200;
 	public Enemies()
     {
@@ -29,46 +29,40 @@ public class Enemies extends Main
 		orange = new JLabel(new ImageIcon("images/orange.gif"));
 		panel.add(orange);
 		orange.setBounds(orangeX, orangeY, 30, 42);
-		orange.setVisible(true);
-		
+		orange.setVisible(true);	
+    }
+	void start()
+	{
 		Timer t = new Timer();  
 		TimerTask tt = new TimerTask() {  
 		    @Override  
 		    public void run() {  
-		        move(red, redX, redY);
-		        move(pink, pinkX, pinkY);
-		        move(cyan, cyanX, cyanY);
-		        move(orange, orangeX, orangeY);
+		        redX = move(redX); 			
+		        redY = move(redY); 
+				red.setBounds(redX, redY, 30, 42);
+				pinkX = move(pinkX); 		
+				pinkY = move(pinkY);
+		        pink.setBounds(pinkX, pinkY, 30, 42);
+		        cyanX = move(cyanX); 		
+		        cyanY = move(cyanY);
+		        cyan.setBounds(cyanX, cyanY, 30, 42);
+		        orangeX = move(orangeX); 	
+		        orangeY = move(orangeY);
+		        orange.setBounds(orangeX, orangeY, 30, 42);
 		    };  
 		}; 
 	    t.scheduleAtFixedRate( tt, 50, 100);
-	    
-
-    }
-	static void move(JLabel enemy, int startX, int startY)
-	{
-	    if(getRandomNumber() == 1)
-	    {
-	    	//startX -= 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 2)
-	    {
-	    	//startX += 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 3)
-	    {
-	    	//startY -= 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 4)
-	    {
-	    	startY = startY + 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
 	}
-	static int getRandomNumber() {
-	    return (int) ((Math.random() * (4 - 1)) + 1);
+	int move(int coord)
+	{
+	    if( (int) ((Math.random() * (100)) + 10) % 2 == 0)
+	    {
+	    	return coord - 5;
+	    }
+	    else if( (int) ((Math.random() * (100)) + 10) % 2 == 1)
+	    {
+	    	return coord + 5;
+	    }
+	    return coord;
 	}
 }

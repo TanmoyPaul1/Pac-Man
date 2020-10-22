@@ -112,7 +112,7 @@ public class Main
 		X = 330; Y = 250;
 		
 		Enemies enemy = new Enemies();
-		
+		enemy.start();
 		
 		frame.addKeyListener(new KeyListener() {
 			@Override

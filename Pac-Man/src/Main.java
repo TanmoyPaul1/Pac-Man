@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*; 
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main
 {
@@ -15,10 +13,7 @@ public class Main
 	public static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
 	static ArrayList<Map> borders = new ArrayList<Map>();
 	public static int X, Y;
-	public static JLabel red, pink, cyan, orange;
-	public static int redX=280, redY=200, pinkX=310, pinkY=200, 
-			cyanX=340, cyanY=200, orangeX=370, orangeY=200;
-	
+
 	public static void main(String args[])
 	{
 		makeHomePage();
@@ -117,17 +112,7 @@ public class Main
 		X = 330; Y = 250;
 		
 		Enemies enemy = new Enemies();
-		Timer t = new Timer();  
-		TimerTask tt = new TimerTask() {  
-		    @Override  
-		    public void run() {  
-		    	move(red, redX, redY);
-		    	move(pink, pinkX, pinkY);
-		    	move(cyan, cyanX, cyanY);
-		    	move(orange, orangeX, orangeY);
-		    };  
-		}; 
-	    t.scheduleAtFixedRate( tt, 50, 100);
+		
 		
 		frame.addKeyListener(new KeyListener() {
 			@Override
@@ -217,31 +202,5 @@ public class Main
 			}
 		});
 		
-	}
-	static void move(JLabel enemy, int startX, int startY)
-	{
-	    if(getRandomNumber() == 1)
-	    {
-	    	//startX -= 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 2)
-	    {
-	    	//startX += 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 3)
-	    {
-	    	//startY -= 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	    else if(getRandomNumber() == 4)
-	    {
-	    	startY = startY + 5;
-	    	enemy.setBounds(startX, startY, 50, 30);
-	    }
-	}
-	static int getRandomNumber() {
-	    return (int) ((Math.random() * (4 - 1)) + 1);
 	}
 }

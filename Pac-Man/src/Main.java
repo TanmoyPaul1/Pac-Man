@@ -11,8 +11,9 @@ public class Main
 	public static JLabel PacManLabel, nameLabel; 
 	public static JTextField nameText; 
 	public static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
+	public static JButton easy, hard;
 	static ArrayList<Map> borders = new ArrayList<Map>();
-	public static int X, Y;
+	public static int X, Y, mode = 0;
 
 	public static void main(String args[])
 	{
@@ -21,48 +22,91 @@ public class Main
 	
 	public static void makeHomePage()
 	{
+		//Sets up the basic attributes of the home page
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setSize(700,500);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.add(panel);
-		frame.setFocusable(true);
-		frame.add(panel);
+		//frame.setFocusable(true);
 		panel.setBackground(Color.BLACK);
 		panel.setLayout(null);
 		
-		panel.add(startButton);
-		startButton.setBounds(100,300,500,115); 
-		
-		nameLabel = new JLabel("Enter your name:"); 
-		nameLabel.setBounds(263,150,200,50); 
+		//Adds the text prompting name input
+		nameLabel = new JLabel("Enter your name and select a game mode:"); 
+		nameLabel.setBounds(150,150,500,50); 
 		nameLabel.setFont(new Font("", Font.PLAIN, 20)); 
 		nameLabel.setForeground(Color.RED); 
 		panel.add(nameLabel);
 		
+		//Adds text field to input name 
 		nameText = new JTextField("");
 		panel.add(nameText);
 		nameText.setBounds(250,200,200,30);
 		 
+		//Adds big Pac-Man game name
 		PacManLabel = new JLabel("Pac-Man");
 		panel.add(PacManLabel);
-		PacManLabel.setBounds(193,20,400,50); 
+		PacManLabel.setBounds(193,20,400,60); 
 		PacManLabel.setFont(new Font("", Font.BOLD, 70)); 
 		PacManLabel.setForeground(Color.YELLOW); 
 		
-		startButton.addActionListener(new ActionListener() 
+		//Added EASY mode
+		easy = new JButton("There's no way you can lose this");
+		easy.setForeground(Color.RED); 
+		easy.setFont(new Font("", Font.PLAIN, 25));
+		easy.addActionListener(new ActionListener() 
 		{ 
 			public void actionPerformed(ActionEvent e) 
+			{ 
+				mode = 0;
+				easy.setVisible(false);
+				hard.setVisible(false);
+				startButton.setBounds(100,300,500,115); 
+				panel.add(startButton);
+				startButton.setVisible(true);    
+			} 
+		} ); 
+		
+		//Added HARD mode
+		hard = new JButton("There's no way you can win this");
+		hard.setForeground(Color.RED); 
+		hard.setFont(new Font("", Font.PLAIN, 25));
+		hard.addActionListener(new ActionListener() 
+		{ 
+			public void actionPerformed(ActionEvent h) 
+			{ 
+				mode = 1;
+				easy.setVisible(false);
+				hard.setVisible(false);
+				startButton.setBounds(100,300,500,115); 
+				panel.add(startButton);
+				startButton.setVisible(true);  
+			} 
+		} ); 
+		
+		//Adding mode buttons on the frame
+		easy.setBounds(150, 280,450,50);
+		panel.add(easy, BorderLayout.SOUTH);
+		hard.setBounds(150,350,450,50);
+		panel.add(hard, BorderLayout.SOUTH);
+		easy.setVisible(true);
+		hard.setVisible(true);
+		panel.revalidate();
+		
+		startButton.addActionListener(new ActionListener() 
+		{ 
+			public void actionPerformed(ActionEvent s) 
 			{ 
 				startButton.setVisible(false);  
 				nameText.setVisible(false);
 				nameLabel.setVisible(false);
 				PacManLabel.setVisible(false);
-				makeMap();
+				makeMap(mode);
 			} 
 		} ); 
 	}
-	public static void makeMap()
+	public static void makeMap(int mode)
 	{
 		//Outputs the Welcome name! message
 		String s1 = nameText.getText();
@@ -107,12 +151,16 @@ public class Main
 		JLabel pacman_up = new JLabel(new ImageIcon("images/pacman_up.gif")); 
 		JLabel pacman_down = new JLabel(new ImageIcon("images/pacman_down.gif")); 
 		pacman_right.setBounds(150, 90,400,365);
-		panel.add(pacman_right); panel.add(pacman_left); 
-		panel.add(pacman_up); 	 panel.add(pacman_down);
+		panel.add(pacman_right); 	panel.add(pacman_up); 
+		panel.add(pacman_left); 	panel.add(pacman_down);
 		X = 330; Y = 250;
 		
+		//Add ghosts and their movements
 		Enemies enemy = new Enemies();
-		enemy.start();
+//		if (mode == 0)
+//			enemy.easyMode(); 
+//		else if (mode == 1)
+			enemy.hardMode();
 		
 		frame.addKeyListener(new KeyListener() {
 			@Override

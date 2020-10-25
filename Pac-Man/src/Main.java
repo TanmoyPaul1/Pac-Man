@@ -11,10 +11,12 @@ public class Main
 	public static JLabel PacManLabel, nameLabel; 
 	public static JTextField nameText; 
 	public static JButton startButton = new JButton(new ImageIcon("images/start.png")); 
-	public static JButton easy, hard;
 	static ArrayList<Map> borders = new ArrayList<Map>();
 	public static int X, Y, mode = 0;
-
+	public static JButton easy = new JButton("There's no way you can lose this");
+	public static JButton hard = new JButton("There is no way you can win this");
+	
+	
 	public static void main(String args[])
 	{
 		makeHomePage();
@@ -24,7 +26,7 @@ public class Main
 	{
 		//Sets up the basic attributes of the home page
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setSize(700,500);
+		frame.setSize(1000,700);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.add(panel);
@@ -34,26 +36,32 @@ public class Main
 		
 		//Adds the text prompting name input
 		nameLabel = new JLabel("Enter your name and select a game mode:"); 
-		nameLabel.setBounds(150,150,500,50); 
+		nameLabel.setBounds(310,150,500,50); 
 		nameLabel.setFont(new Font("", Font.PLAIN, 20)); 
 		nameLabel.setForeground(Color.RED); 
 		panel.add(nameLabel);
 		
+		panel.add(easy);
+		easy.setBounds(150, 280,450,50);
+		easy.setVisible(true);
+		easy.setFont(new Font("", Font.PLAIN, 25));
+		
 		//Adds text field to input name 
 		nameText = new JTextField("");
 		panel.add(nameText);
-		nameText.setBounds(250,200,200,30);
+		nameText.setBounds(420,200,200,30);
 		 
 		//Adds big Pac-Man game name
 		PacManLabel = new JLabel("Pac-Man");
 		panel.add(PacManLabel);
-		PacManLabel.setBounds(193,20,400,60); 
+		PacManLabel.setBounds(354,20,400,60); 
 		PacManLabel.setFont(new Font("", Font.BOLD, 70)); 
 		PacManLabel.setForeground(Color.YELLOW); 
 		
 		//Added EASY mode
-		easy = new JButton("There's no way you can lose this");
-		easy.setForeground(Color.RED); 
+		panel.add(easy);
+		easy.setBounds(300, 280,450,50);
+		easy.setVisible(true);
 		easy.setFont(new Font("", Font.PLAIN, 25));
 		easy.addActionListener(new ActionListener() 
 		{ 
@@ -62,37 +70,30 @@ public class Main
 				mode = 0;
 				easy.setVisible(false);
 				hard.setVisible(false);
-				startButton.setBounds(100,300,500,115); 
 				panel.add(startButton);
+				startButton.setBounds(270,300,500,115); 
 				startButton.setVisible(true);    
 			} 
 		} ); 
 		
 		//Added HARD mode
-		hard = new JButton("There's no way you can win this");
-		hard.setForeground(Color.RED); 
+		
+		panel.add(hard);
+		hard.setBounds(300, 380,450,50);
+		hard.setVisible(true);
 		hard.setFont(new Font("", Font.PLAIN, 25));
 		hard.addActionListener(new ActionListener() 
 		{ 
-			public void actionPerformed(ActionEvent h) 
+			public void actionPerformed(ActionEvent e) 
 			{ 
 				mode = 1;
 				easy.setVisible(false);
 				hard.setVisible(false);
-				startButton.setBounds(100,300,500,115); 
 				panel.add(startButton);
-				startButton.setVisible(true);  
+				startButton.setBounds(270,300,500,115); 
+				startButton.setVisible(true);    
 			} 
 		} ); 
-		
-		//Adding mode buttons on the frame
-		easy.setBounds(150, 280,450,50);
-		panel.add(easy, BorderLayout.SOUTH);
-		hard.setBounds(150,350,450,50);
-		panel.add(hard, BorderLayout.SOUTH);
-		easy.setVisible(true);
-		hard.setVisible(true);
-		panel.revalidate();
 		
 		startButton.addActionListener(new ActionListener() 
 		{ 
@@ -119,11 +120,29 @@ public class Main
 			borders.add(new Map("images/horizontalBorder.png",0,i,100,10));
 			i += 99;
 		}
+		for(int i = 100; i <= 1000; i++)
+		{
+			// Adding a new Map object to the ArrayList and setting to a certain width and height and location
+			borders.add(new Map("images/horizontalBorder.png",150,i,100,10));
+			i += 99;
+		}
+		for(int i = 100; i <= 1000; i++)
+		{
+			// Adding a new Map object to the ArrayList and setting to a certain width and height and location
+			borders.add(new Map("images/horizontalBorder.png",360,i,100,10));
+			i += 99;
+		}
 		
-		borders.add(new Map("images/horizontalBorder.png",150,0,10,300));
-		borders.add(new Map("images/horizontalBorder.png",150,350,10,350));
+		borders.add(new Map("images/horizontalBorder.png",150,0,10,600));
+		borders.add(new Map("images/horizontalBorder.png",150,700,10,650));
 		borders.add(new Map("images/horizontalBorder.png",300,0,10,300));
-		borders.add(new Map("images/horizontalBorder.png",300,350,10,350));
+		borders.add(new Map("images/horizontalBorder.png",300,400,10,350));
+		borders.add(new Map("images/horizontalBorder.png",300,850,10,350));
+		borders.add(new Map("images/horizontalBorder.png",450,0,10,600));
+		borders.add(new Map("images/horizontalBorder.png",450,700,10,650));
+		borders.add(new Map("images/horizontalBorder.png",600,0,10,300));
+		borders.add(new Map("images/horizontalBorder.png",600,400,10,350));
+		borders.add(new Map("images/horizontalBorder.png",600,850,10,350));
 		
 		//Adding enemies in the board
 		
@@ -131,19 +150,19 @@ public class Main
 		//Side Borders in the map
 		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
 		panel.add(topBorder1);
-		topBorder1.setBounds(-110,0,800,10); 
+		topBorder1.setBounds(0,0,1000,10); 
 		
 		JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
 		panel.add(bottomBorder1);
-		bottomBorder1.setBounds(-110,453,800,10); 
+		bottomBorder1.setBounds(0,653,1000,10); 
 		
 		JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder1);
-		sideBorder1.setBounds(0,0,10,463); 
+		sideBorder1.setBounds(0,0,10,700); 
 		
 		JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 		panel.add(sideBorder2);
-		sideBorder2.setBounds(690,0,10,463); 
+		sideBorder2.setBounds(990,0,10,700); 
 		
 		//Adds 4 PacMans facing different directions
 		JLabel pacman_right = new JLabel(new ImageIcon("images/pacman_right.gif")); 
@@ -151,9 +170,12 @@ public class Main
 		JLabel pacman_up = new JLabel(new ImageIcon("images/pacman_up.gif")); 
 		JLabel pacman_down = new JLabel(new ImageIcon("images/pacman_down.gif")); 
 		pacman_right.setBounds(150, 90,400,365);
-		panel.add(pacman_right); 	panel.add(pacman_up); 
-		panel.add(pacman_left); 	panel.add(pacman_down);
-		X = 330; Y = 250;
+		panel.add(pacman_right); 	
+		panel.add(pacman_up); 
+		panel.add(pacman_left); 	
+		panel.add(pacman_down);
+		X = 330; 
+		Y = 250;
 		
 		//Add ghosts and their movements
 		Enemies enemy = new Enemies();
@@ -173,9 +195,9 @@ public class Main
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(false);
 					
-					if(X >= 648)
+					if(X >= 948)
 					{
-						X = 648;
+						X = 948;
 					}
 					else
 					{
@@ -211,6 +233,10 @@ public class Main
 					{
 						Y = 10;
 					}
+					else if(((Y > 118 && Y - 5 <= 158) && !(X >= 610 && X <= 660 )) || ((Y > 268 && Y - 5 <= 308) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y > 455 && Y - 5 <= 455) && !((X >= 610 && X <= 660))) || ((Y > 610 && Y - 5 <= 610) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))))
+					{
+						Y -= 0;
+					}
 					else
 					{
 						Y -= 5;
@@ -224,9 +250,13 @@ public class Main
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(true);
 					
-					if(Y >= 411)
+					if(Y >= 611)
 					{
-						Y = 411;
+						Y = 611;
+					}
+					else if(((Y < 110 && Y + 5 >= 110) && !(X >= 610 && X <= 660 )) || ((Y < 260 && Y + 5 >= 260) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y < 560 && Y + 5 >= 560) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y < 410 && Y + 5 >= 410) && !(X >= 610 && X <= 660)))
+					{
+						Y += 0;
 					}
 					else
 					{
@@ -251,4 +281,4 @@ public class Main
 		});
 		
 	}
-}
+	}

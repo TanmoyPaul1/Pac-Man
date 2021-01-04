@@ -15,8 +15,9 @@ public class Main
 	public static int X, Y, mode = 0;
 	public static JButton easy = new JButton("There's no way you can lose this");
 	public static JButton hard = new JButton("There is no way you can win this");
-	
-	
+	//public static JLabel p1, p2, p3, p4, p5 = new JLabel(new ImageIcon("images/pellet.png"));
+	static ArrayList<JLabel> pellets = new ArrayList<JLabel>();
+
 	public static void main(String args[])
 	{
 		makeHomePage();
@@ -114,23 +115,20 @@ public class Main
 		JOptionPane.showMessageDialog(nameText,"Welcome " + s1 + "!", "Pac-Man", 1); 
 		
 		// Adding maze borders with a loop using Map class objects
-		for(int i = 100; i <= 1000; i++)
+		for(int i = 100; i <= 1000; i+=100)
 		{
 			// Adding a new Map object to the ArrayList and setting to a certain width and height and location
 			borders.add(new Map("images/horizontalBorder.png",0,i,100,10));
-			i += 99;
 		}
-		for(int i = 100; i <= 1000; i++)
+		for(int i = 100; i <= 1000; i+=100)
 		{
 			// Adding a new Map object to the ArrayList and setting to a certain width and height and location
 			borders.add(new Map("images/horizontalBorder.png",150,i,100,10));
-			i += 99;
 		}
-		for(int i = 100; i <= 1000; i++)
+		for(int i = 100; i <= 1000; i+=100)
 		{
 			// Adding a new Map object to the ArrayList and setting to a certain width and height and location
 			borders.add(new Map("images/horizontalBorder.png",360,i,100,10));
-			i += 99;
 		}
 		
 		borders.add(new Map("images/horizontalBorder.png",150,0,10,600));
@@ -177,11 +175,20 @@ public class Main
 		X = 330; 
 		Y = 250;
 		
+		//Add pellets
+
+		for (int i=0; i < 50; i++)
+		{
+		pellets.add(new JLabel("images/pellet.png"));
+		}
+//		p5.setBounds(20, 20, 2, 2);
+//		panel.add(p5);
+		
 		//Add ghosts and their movements
 		Enemies enemy = new Enemies();
-//		if (mode == 0)
-//			enemy.easyMode(); 
-//		else if (mode == 1)
+		if (mode == 0)
+			enemy.easyMode(); 
+		else if (mode == 1)
 			enemy.hardMode();
 		
 		frame.addKeyListener(new KeyListener() {

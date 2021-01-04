@@ -31,28 +31,28 @@ public class Enemies extends Main
 		orange.setBounds(orangeX, orangeY, 30, 42);
 		orange.setVisible(true);	
     }
-//	void easyMode()
-//	{
-//		Timer t = new Timer();  
-//		TimerTask tt = new TimerTask() {  
-//		    @Override  
-//		    public void run() {  
-//		        redX = move(redX); 			
-//		        redY = move(redY); 
-//				red.setBounds(redX, redY, 30, 42);
-//				pinkX = move(pinkX); 		
-//				pinkY = move(pinkY);
-//		        pink.setBounds(pinkX, pinkY, 30, 42);
-//		        cyanX = move(cyanX); 		
-//		        cyanY = move(cyanY);
-//		        cyan.setBounds(cyanX, cyanY, 30, 42);
-//		        orangeX = move(orangeX); 	
-//		        orangeY = move(orangeY);
-//		        orange.setBounds(orangeX, orangeY, 30, 42);
-//		    };  
-//		}; 
-//	    t.scheduleAtFixedRate( tt, 50, 100);
-//	}
+	void easyMode()
+	{
+		Timer t = new Timer();  
+		TimerTask tt = new TimerTask() {  
+		    @Override  
+		    public void run() {  
+		        redX = move(redX); 			
+		        redY = move(redY); 
+				red.setBounds(redX, redY, 30, 42);
+				pinkX = move(pinkX); 		
+				pinkY = move(pinkY);
+		        pink.setBounds(pinkX, pinkY, 30, 42);
+		        cyanX = move(cyanX); 		
+		        cyanY = move(cyanY);
+		        cyan.setBounds(cyanX, cyanY, 30, 42);
+		        orangeX = move(orangeX); 	
+		        orangeY = move(orangeY);
+		        orange.setBounds(orangeX, orangeY, 30, 42);
+		    };  
+		}; 
+	    t.scheduleAtFixedRate( tt, 50, 100);
+	}
 	void hardMode()
 	{
 		Timer t = new Timer();  
@@ -76,32 +76,10 @@ public class Enemies extends Main
 		}; 
 	    t.scheduleAtFixedRate( tt, 50, 100);
 	}
-	void random()
-	{
-		Timer t = new Timer();  
-		TimerTask tt = new TimerTask() {  
-		    @Override  
-		    public void run() {  
-		        redX = randomMove(redX); 			
-		        redY = randomMove(redY); 
-				red.setBounds(redX, redY, 30, 42);
-				pinkX = randomMove(pinkX); 		
-				pinkY = randomMove(pinkY);
-		        pink.setBounds(pinkX, pinkY, 30, 42);
-		        cyanX = randomMove(cyanX); 		
-		        cyanY = randomMove(cyanY);
-		        cyan.setBounds(cyanX, cyanY, 30, 42);
-		        orangeX = randomMove(orangeX); 	
-		        orangeY = randomMove(orangeY);
-		        orange.setBounds(orangeX, orangeY, 30, 42);
-		    };  
-		}; 
-	    t.scheduleAtFixedRate( tt, 50, 100);
-	}
 	
-	int randomMove(int coord)
+	int move(int coord)
 	{
-		return (int)  (Math.random() * (100) + 10) % 2 == 0  ?  coord - 5  :  coord + 5;
+		return (int)  (Math.random() * (100) + 10) % 2 == 0  ?  coord - 10  :  coord + 10;
 	}
 	
 	int hardMoveX(int coord)

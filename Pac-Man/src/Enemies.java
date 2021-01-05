@@ -1,6 +1,9 @@
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,6 +12,9 @@ public class Enemies extends Main
 	private static JLabel red, pink, cyan, orange;
 	private static int redX=50, redY=50, pinkX=50, pinkY=400, 
 				cyanX=600, cyanY=50, orangeX=600, orangeY=400;
+	private static boolean shown = false;
+	private static JLabel score = new JLabel("Score = 0");
+	private static int score1 = 0;
 	public Enemies()
     {
 		red = new JLabel(new ImageIcon("images/red.gif"));
@@ -30,6 +36,11 @@ public class Enemies extends Main
 		panel.add(orange);
 		orange.setBounds(orangeX, orangeY, 30, 42);
 		orange.setVisible(true);	
+		
+		panel.add(score);
+		score.setBounds(420, 600, 100, 60);
+		score.setForeground(Color.YELLOW); 
+		score.setVisible(true);
     }
 	void easyMode()
 	{
@@ -59,6 +70,39 @@ public class Enemies extends Main
 		TimerTask tt = new TimerTask() {  
 		    @Override  
 		    public void run() {  
+		    	 if((Math.abs(redX - X) <= 15 && Math.abs(redY - Y) <= 15) || (Math.abs(pinkX - X) <= 15 && Math.abs(pinkY - Y) <= 15) || (Math.abs(cyanX - X) <= 15 && Math.abs(cyanY - Y) <= 15) || (Math.abs(orangeX - X) <= 15 && Math.abs(orangeY - Y) <= 15))         
+					{
+						 gameOver = true;
+						 if(!shown)
+						 {
+							 JOptionPane.showMessageDialog(null, "GAME OVER!");
+				    		 shown = true;
+				    		 PacManLabel.setVisible(false);
+				    		 for(int i = 0; i < borders.size(); i++)
+				    		 {
+				    			 borders.get(i).border.setVisible(false);
+				    		 }
+				    		 for(int i = 0; i < pellets.size(); i++)
+				    		 {
+				    			 pellets.get(i).setVisible(false);
+				    		 }
+				    		 nameLabel.setVisible(true);
+				    		 nameLabel.setText("Game Over");
+				    		 nameLabel.setFont(new Font("", Font.PLAIN, 50)); 
+				    		 nameLabel.setBounds(400,100,300,100);
+				    		 score.setText("TEST");
+				    		 pacman_right.setVisible(false);
+							 pacman_left.setVisible(false);
+							 pacman_up.setVisible(false);
+							 pacman_down.setVisible(false);
+							 topBorder1.setVisible(false);
+							 bottomBorder1.setVisible(false);
+							 sideBorder1.setVisible(false);
+							 sideBorder2.setVisible(false);
+						 }
+					}
+		    	 else
+		    	 {
 		        redX = hardMoveX(redX); 			
 		        redY = hardMoveY(redY); 
 				red.setBounds(redX, redY, 30, 42);
@@ -71,7 +115,9 @@ public class Enemies extends Main
 		        orangeX = hardMoveX(orangeX); 	
 		        orangeY = hardMoveY(orangeY);
 		        orange.setBounds(orangeX, orangeY, 30, 42);
-		        
+		        score1++;
+		        score.setText("Score = " + score1);
+		    	 }
 		    };  
 		}; 
 	    t.scheduleAtFixedRate( tt, 50, 100);

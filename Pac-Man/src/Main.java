@@ -15,6 +15,15 @@ public class Main
 	public static int X, Y, mode = 0;
 	public static JButton easy = new JButton("There's no way you can lose this");
 	public static JButton hard = new JButton("There is no way you can win this");
+	public static JLabel pacman_right = new JLabel(new ImageIcon("images/pacman_right.gif")); 
+	public static JLabel pacman_left = new JLabel(new ImageIcon("images/pacman_left.gif")); 
+	public static JLabel pacman_up = new JLabel(new ImageIcon("images/pacman_up.gif")); 
+	public static JLabel pacman_down = new JLabel(new ImageIcon("images/pacman_down.gif")); 
+	public static boolean gameOver = false;
+	public static JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
+	public static JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
+	public static JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+	public static JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 	//public static JLabel p1, p2, p3, p4, p5 = new JLabel(new ImageIcon("images/pellet.png"));
 	static ArrayList<JLabel> pellets = new ArrayList<JLabel>();
 
@@ -146,27 +155,23 @@ public class Main
 		
 		
 		//Side Borders in the map
-		JLabel topBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png"));
+		
 		panel.add(topBorder1);
 		topBorder1.setBounds(0,0,1000,10); 
 		
-		JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
+		
 		panel.add(bottomBorder1);
 		bottomBorder1.setBounds(0,653,1000,10); 
 		
-		JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+		
 		panel.add(sideBorder1);
 		sideBorder1.setBounds(0,0,10,700); 
 		
-		JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+		
 		panel.add(sideBorder2);
 		sideBorder2.setBounds(990,0,10,700); 
 		
 		//Adds 4 PacMans facing different directions
-		JLabel pacman_right = new JLabel(new ImageIcon("images/pacman_right.gif")); 
-		JLabel pacman_left = new JLabel(new ImageIcon("images/pacman_left.gif")); 
-		JLabel pacman_up = new JLabel(new ImageIcon("images/pacman_up.gif")); 
-		JLabel pacman_down = new JLabel(new ImageIcon("images/pacman_down.gif")); 
 		pacman_right.setBounds(150, 90,400,365);
 		panel.add(pacman_right); 	
 		panel.add(pacman_up); 
@@ -195,7 +200,7 @@ public class Main
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				if(arg0.getKeyCode() == KeyEvent.VK_RIGHT)
+				if(arg0.getKeyCode() == KeyEvent.VK_RIGHT && !gameOver)
 				{
 					pacman_right.setVisible(true);
 					pacman_left.setVisible(false);
@@ -212,7 +217,7 @@ public class Main
 					}
 					pacman_right.setBounds( X, Y, 42, 42); 
 				}
-				if(arg0.getKeyCode() == KeyEvent.VK_LEFT)
+				if(arg0.getKeyCode() == KeyEvent.VK_LEFT && !gameOver)
 				{
 					pacman_right.setVisible(false);
 					pacman_left.setVisible(true);
@@ -229,7 +234,7 @@ public class Main
 					}
 					pacman_left.setBounds(X, Y, 42, 42); 
 				}
-				if(arg0.getKeyCode() == KeyEvent.VK_UP)
+				if(arg0.getKeyCode() == KeyEvent.VK_UP && !gameOver)
 				{
 					pacman_right.setVisible(false);
 					pacman_left.setVisible(false);
@@ -250,7 +255,7 @@ public class Main
 					}
 					pacman_up.setBounds(X, Y, 42, 42); 
 				}
-				if(arg0.getKeyCode() == KeyEvent.VK_DOWN)
+				if(arg0.getKeyCode() == KeyEvent.VK_DOWN && !gameOver)
 				{
 					pacman_right.setVisible(false);
 					pacman_left.setVisible(false);

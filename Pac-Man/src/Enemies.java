@@ -38,7 +38,7 @@ public class Enemies extends Main
 		orange.setVisible(true);	
 		
 		panel.add(score);
-		score.setBounds(420, 600, 100, 60);
+		score.setBounds(460, 613, 100, 60);
 		score.setForeground(Color.YELLOW); 
 		score.setVisible(true);
     }
@@ -67,57 +67,71 @@ public class Enemies extends Main
 	void hardMode()
 	{
 		Timer t = new Timer();  
-		TimerTask tt = new TimerTask() {  
+		TimerTask tt = new TimerTask() 
+		{  
 		    @Override  
-		    public void run() {  
-		    	 if((Math.abs(redX - X) <= 15 && Math.abs(redY - Y) <= 15) || (Math.abs(pinkX - X) <= 15 && Math.abs(pinkY - Y) <= 15) || (Math.abs(cyanX - X) <= 15 && Math.abs(cyanY - Y) <= 15) || (Math.abs(orangeX - X) <= 15 && Math.abs(orangeY - Y) <= 15))         
+		    public void run() 
+		    {  
+		    	if((Math.abs(redX - X) <= 28 && Math.abs(redY - Y) <= 28) || (Math.abs(pinkX - X) <= 28 && Math.abs(pinkY - Y) <= 28) || (Math.abs(cyanX - X) <= 28 && Math.abs(cyanY - Y) <= 28) || (Math.abs(orangeX - X) <= 28 && Math.abs(orangeY - Y) <= 28))         
+				{
+					gameOver = true;
+					if(!shown)
 					{
-						 gameOver = true;
-						 if(!shown)
-						 {
-							 JOptionPane.showMessageDialog(null, "GAME OVER!");
-				    		 shown = true;
-				    		 PacManLabel.setVisible(false);
-				    		 for(int i = 0; i < borders.size(); i++)
-				    		 {
-				    			 borders.get(i).border.setVisible(false);
-				    		 }
-				    		 for(int i = 0; i < pellets.size(); i++)
-				    		 {
-				    			 pellets.get(i).setVisible(false);
-				    		 }
-				    		 nameLabel.setVisible(true);
-				    		 nameLabel.setText("Game Over");
-				    		 nameLabel.setFont(new Font("", Font.PLAIN, 50)); 
-				    		 nameLabel.setBounds(400,100,300,100);
-				    		 score.setText("TEST");
-				    		 pacman_right.setVisible(false);
-							 pacman_left.setVisible(false);
-							 pacman_up.setVisible(false);
-							 pacman_down.setVisible(false);
-							 topBorder1.setVisible(false);
-							 bottomBorder1.setVisible(false);
-							 sideBorder1.setVisible(false);
-							 sideBorder2.setVisible(false);
-						 }
+						JOptionPane.showMessageDialog(null, "GAME OVER!");
+				    	shown = true;
+				    	PacManLabel.setVisible(false);
+				    	red.setVisible(false);
+				    	pink.setVisible(false);
+				    	cyan.setVisible(false);
+				    	orange.setVisible(false);
+				    	for(int i = 0; i < borders.size(); i++)
+				    	{
+				    		borders.get(i).border.setVisible(false);
+				    	}
+				    	for(int i = 0; i < pellets.size(); i++)
+				    	{
+				    		pellets.get(i).border.setVisible(false);
+				    	}
+				    	nameLabel.setVisible(true);
+				    	nameLabel.setText("Game Over");
+				    	nameLabel.setFont(new Font("", Font.PLAIN, 50)); 
+				    	nameLabel.setBounds(380,100,300,100);
+						score.setBounds(415, 400, 300, 100);
+						score.setFont(new Font("", Font.BOLD, 40));
+				    	pacman_right.setVisible(false);
+						pacman_left.setVisible(false);
+						pacman_up.setVisible(false);
+						pacman_down.setVisible(false);
+						topBorder1.setVisible(false);
+						bottomBorder1.setVisible(false);
+						sideBorder1.setVisible(false);
+						sideBorder2.setVisible(false);
 					}
-		    	 else
-		    	 {
-		        redX = hardMoveX(redX); 			
-		        redY = hardMoveY(redY); 
-				red.setBounds(redX, redY, 30, 42);
-				pinkX = hardMoveX(pinkX); 		
-				pinkY = hardMoveY(pinkY);
-		        pink.setBounds(pinkX, pinkY, 30, 42);
-		        cyanX = hardMoveX(cyanX); 		
-		        cyanY = hardMoveY(cyanY);
-		        cyan.setBounds(cyanX, cyanY, 30, 42);
-		        orangeX = hardMoveX(orangeX); 	
-		        orangeY = hardMoveY(orangeY);
-		        orange.setBounds(orangeX, orangeY, 30, 42);
-		        score1++;
-		        score.setText("Score = " + score1);
-		    	 }
+				}
+		    	else
+		    	{
+//		    		for(int i = 0; i < pellets.size(); i++)
+//			    	{
+//						if((Math.abs(X - pellets.get(i).getX()) <= 30 && Math.abs(Y - pellets.get(i).getY()) <= 30))         
+//						{
+//			    		pellets.get(i).border.setVisible(false);
+//			    		score1++;
+//			        	score.setText("Score = " + score1);
+//						}
+//			    	}
+		    		redX = hardMoveX(redX); 			
+		    		redY = hardMoveY(redY); 
+		    		red.setBounds(redX, redY, 30, 42);
+		    		pinkX = hardMoveX(pinkX); 		
+		    		pinkY = hardMoveY(pinkY);
+		    		pink.setBounds(pinkX, pinkY, 30, 42);
+		    		cyanX = hardMoveX(cyanX); 		
+		    		cyanY = hardMoveY(cyanY);
+		    		cyan.setBounds(cyanX, cyanY, 30, 42);
+		    		orangeX = hardMoveX(orangeX); 	
+		    		orangeY = hardMoveY(orangeY);
+		    		orange.setBounds(orangeX, orangeY, 30, 42);
+		    	}
 		    };  
 		}; 
 	    t.scheduleAtFixedRate( tt, 50, 100);

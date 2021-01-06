@@ -25,7 +25,7 @@ public class Main
 	public static JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 	public static JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 	//public static JLabel p1, p2, p3, p4, p5 = new JLabel(new ImageIcon("images/pellet.png"));
-	static ArrayList<JLabel> pellets = new ArrayList<JLabel>();
+	static ArrayList<Map> pellets = new ArrayList<Map>();
 
 	public static void main(String args[])
 	{
@@ -142,13 +142,13 @@ public class Main
 		
 		borders.add(new Map("images/horizontalBorder.png",150,0,10,600));
 		borders.add(new Map("images/horizontalBorder.png",150,700,10,650));
-		borders.add(new Map("images/horizontalBorder.png",300,0,10,300));
-		borders.add(new Map("images/horizontalBorder.png",300,400,10,350));
+		borders.add(new Map("images/horizontalBorder.png",300,0,10,308));
+		borders.add(new Map("images/horizontalBorder.png",300,400,10,360));
 		borders.add(new Map("images/horizontalBorder.png",300,850,10,350));
-		borders.add(new Map("images/horizontalBorder.png",450,0,10,600));
+		borders.add(new Map("images/horizontalBorder.png",450,0,10,610));
 		borders.add(new Map("images/horizontalBorder.png",450,700,10,650));
-		borders.add(new Map("images/horizontalBorder.png",600,0,10,300));
-		borders.add(new Map("images/horizontalBorder.png",600,400,10,350));
+		borders.add(new Map("images/horizontalBorder.png",600,0,10,308));
+		borders.add(new Map("images/horizontalBorder.png",600,400,10,360));
 		borders.add(new Map("images/horizontalBorder.png",600,850,10,350));
 		
 		//Adding enemies in the board
@@ -177,17 +177,18 @@ public class Main
 		panel.add(pacman_up); 
 		panel.add(pacman_left); 	
 		panel.add(pacman_down);
-		X = 330; 
+		X = 330;  
 		Y = 250;
 		
 		//Add pellets
 
-		for (int i=0; i < 50; i++)
+		for (int i = 0; i < 25; i++)
 		{
-		pellets.add(new JLabel("images/pellet.png"));
+			for (int j = 0; j < 25; j++)
+			{
+				pellets.add(new Map("images/pellet.png", j * 30, i * 50, 4, 4));
+			}
 		}
-//		p5.setBounds(20, 20, 2, 2);
-//		panel.add(p5);
 		
 		//Add ghosts and their movements
 		Enemies enemy = new Enemies();
@@ -276,7 +277,6 @@ public class Main
 					}
 					pacman_down.setBounds(X, Y, 42, 42); 
 				}
-				
 			}
 
 			@Override

@@ -48,17 +48,17 @@ public class Enemies extends Main
 		TimerTask tt = new TimerTask() {  
 		    @Override  
 		    public void run() {  
-		        redX = move(redX); 			
-		        redY = move(redY); 
+		        redX = move(redX); 						if(redX >= 948){ redX = 948;} if(redX <= 10){ redX = 10;} 
+		        redY = move(redY); 						if(redY >= 611){ redY = 611;} if(redY <= 10){ redY = 10;} 
 				red.setBounds(redX, redY, 30, 42);
-				pinkX = move(pinkX); 		
-				pinkY = move(pinkY);
+				pinkX = move(pinkX); 					if(pinkX >= 948){ pinkX = 948;} if(pinkX <= 10){ pinkX = 10;} 
+				pinkY = move(pinkY);					if(pinkY >= 611){ pinkY = 611;} if(pinkY <= 10){ pinkY = 10;} 
 		        pink.setBounds(pinkX, pinkY, 30, 42);
-		        cyanX = move(cyanX); 		
-		        cyanY = move(cyanY);
+		        cyanX = move(cyanX); 					if(cyanX >= 948){ cyanX = 948;} if(cyanX <= 10){ cyanX = 10;} 
+		        cyanY = move(cyanY);					if(cyanY >= 611){ cyanY = 611;} if(cyanY <= 10){ cyanY = 10;} 
 		        cyan.setBounds(cyanX, cyanY, 30, 42);
-		        orangeX = move(orangeX); 	
-		        orangeY = move(orangeY);
+		        orangeX = move(orangeX); 		if(orangeX >= 948){ orangeX = 948;} if(orangeX <= 10){ orangeX = 10;} 
+		        orangeY = move(orangeY);		if(orangeY >= 611){ orangeY = 611;} if(orangeY <= 10){ orangeY = 10;} 
 		        orange.setBounds(orangeX, orangeY, 30, 42);
 		    };  
 		}; 
@@ -96,7 +96,7 @@ public class Enemies extends Main
 				    	nameLabel.setText("Game Over");
 				    	nameLabel.setFont(new Font("", Font.PLAIN, 50)); 
 				    	nameLabel.setBounds(380,100,300,100);
-						score.setBounds(415, 400, 300, 100);
+						score.setBounds(410, 400, 350, 100);
 						score.setFont(new Font("", Font.BOLD, 40));
 				    	pacman_right.setVisible(false);
 						pacman_left.setVisible(false);
@@ -112,7 +112,7 @@ public class Enemies extends Main
 		    	{
 //		    		for(int i = 0; i < pellets.size(); i++)
 //			    	{
-//						if((Math.abs(X - pellets.get(i).getX()) <= 30 && Math.abs(Y - pellets.get(i).getY()) <= 30))         
+//						if((Math.abs(X - pellets.get(i).getX()) <= 100) && (Math.abs(Y - pellets.get(i).getY()) >= 30))         
 //						{
 //			    		pellets.get(i).border.setVisible(false);
 //			    		score1++;

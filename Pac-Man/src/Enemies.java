@@ -86,33 +86,18 @@ public class Enemies extends Main
 				}
 		    	else
 		    	{
-		    		System.out.println(X);
-		    		if(X <= 16)
-		    		{
-		    			System.out.println("Success");
-		    			for(int i = 0; i < 25; i++)
-			    		{
-			    				if((Math.abs(pellets.get(i).getX() - X) <= 30 && Math.abs(pellets.get(i).getY() - Y) <= 30))
+		    		for(int i = 0; i < pellets.size(); i++)
+			    	{
+			    		if((Math.abs(pellets.get(i).getX() - X - 20) <= 20 && Math.abs(pellets.get(i).getY() - Y - 20) <= 20))
+			    			{
+			    				if(pellets.get(i).border.isVisible())
 			    				{
-			    					pellets.get(i).border.setVisible(false);
-						    		score1++;
-						        	score.setText("Score = " + score1);
+			    					score1++;
 			    				}
-			    		}
-		    		}
-		    		else if(X <= 50)
-		    		{
-		    			for(int i = 25; i < 50; i++)
-			    		{
-			    				if((Math.abs(pellets.get(i).getX() - X) <= 30 && Math.abs(pellets.get(i).getY() - Y) <= 30))
-			    				{
-			    					pellets.get(i).border.setVisible(false);
-						    		score1++;
-						        	score.setText("Score = " + score1);
-						        	break;
-			    				}
-			    		}
-		    		}
+			    				pellets.get(i).border.setVisible(false);
+						       	score.setText("Score = " + score1);
+			    			}
+			    	}
 			        redX = move(redX); 						if(redX >= 948){ redX = 948;} if(redX <= 10){ redX = 10;} 
 			        redY = move(redY); 						if(redY >= 611){ redY = 611;} if(redY <= 10){ redY = 10;} 
 					red.setBounds(redX, redY, 30, 42);
@@ -176,30 +161,18 @@ public class Enemies extends Main
 				}
 		    	else
 		    	{
-		    		if(X <= 10)
-		    		{
-		    			for(int i = 0; i < 25; i++)
-			    		{
-			    				if((Math.abs(pellets.get(i).getX() - X) <= 30 && Math.abs(pellets.get(i).getY() - Y) <= 30))
+		    		for(int i = 0; i < pellets.size(); i++)
+			    	{
+			    		if((Math.abs(pellets.get(i).getX() - X - 20) <= 20 && Math.abs(pellets.get(i).getY() - Y - 20) <= 20))
+			    			{
+			    				if(pellets.get(i).border.isVisible())
 			    				{
-			    					pellets.get(i).border.setVisible(false);
-						    		score1++;
-						        	score.setText("Score = " + score1);
+			    					score1++;
 			    				}
-			    		}
-		    		}
-		    		else if(X <= 50)
-		    		{
-		    			for(int i = 25; i < 50; i++)
-			    		{
-			    				if((Math.abs(pellets.get(i).getX() - X) <= 30 && Math.abs(pellets.get(i).getY() - Y) <= 30))
-			    				{
-			    					pellets.get(i).border.setVisible(false);
-						    		score1++;
-						        	score.setText("Score = " + score1);
-			    				}
-			    		}
-		    		}
+			    				pellets.get(i).border.setVisible(false);
+						       	score.setText("Score = " + score1);
+			    			}
+			    	}
 		    		redX = hardMoveX(redX); 			
 		    		redY = hardMoveY(redY); 
 		    		red.setBounds(redX, redY, 30, 42);
@@ -220,7 +193,7 @@ public class Enemies extends Main
 	
 	int move(int coord)
 	{
-		return (int)  (Math.random() * (100) + 10) % 2 == 0  ?  coord - 10  :  coord + 10;
+		return (int)  (Math.random() * (100) + 10) % 2 == 0  ?  coord + 10 :  coord - 10;
 	}
 	
 	int hardMoveX(int coord)

@@ -182,9 +182,9 @@ public class Main
 		
 		//Add pellets
 
-		for (int i = 0; i < 25; i++)
+		for (int i = 1; i < 20; i+=2)
 		{
-			for (int j = 0; j < 25; j++)
+			for (int j = 1; j < 22; j++)
 			{
 				pellets.add(new Map("images/pellet.png", j * 30, i * 50, 4, 4));
 			}

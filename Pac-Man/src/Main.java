@@ -24,6 +24,8 @@ public class Main
 	public static JLabel bottomBorder1 = new JLabel(new ImageIcon("images/horizontalBorder.png")); 
 	public static JLabel sideBorder1 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
 	public static JLabel sideBorder2 = new JLabel(new ImageIcon("images/verticalBorder.png")); 
+	public static JLabel exit1 = new JLabel(new ImageIcon("images/exits.png"));
+	public static JLabel exit2 = new JLabel(new ImageIcon("images/exits.odg"));
 	//public static JLabel p1, p2, p3, p4, p5 = new JLabel(new ImageIcon("images/pellet.png"));
 	static ArrayList<Map> pellets = new ArrayList<Map>();
 
@@ -163,6 +165,9 @@ public class Main
 		panel.add(bottomBorder1);
 		bottomBorder1.setBounds(0,653,1000,10); 
 		
+		panel.add(exit1);
+		exit1.setBounds(350,250,100,500);
+		exit1.setVisible(true);
 		
 		panel.add(sideBorder1);
 		sideBorder1.setBounds(0,0,10,700); 
@@ -170,6 +175,8 @@ public class Main
 		
 		panel.add(sideBorder2);
 		sideBorder2.setBounds(990,0,10,700); 
+		
+		
 		
 		//Adds 4 PacMans facing different directions
 		pacman_right.setBounds(150, 90,400,365);
@@ -207,10 +214,17 @@ public class Main
 					pacman_left.setVisible(false);
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(false);
-					
-					if(X >= 948)
+					if(X >= 948 || (Y <= 100 && (X <= 60 && X + 5 >= 65)) || (Y <= 100 && (X <= 160 && X + 5 >= 165)) || (Y <= 100 && (X <= 260 && X + 5 >= 265)) || (Y <= 100 && (X <= 360 && X + 5 >= 365)) || (Y <= 100 && (X <= 460 && X + 5 >= 465)) || (Y <= 100 && (X <= 560 && X + 5 >= 565)) || (Y <= 100 && (X <= 660 && X + 5 >= 665)) || (Y <= 100 && (X <= 760 && X + 5 >= 765)) || (Y <= 100 && (X <= 860 && X + 5 >= 865)) || (Y <= 100 && (X <= 960 && X + 5 >= 965)))
 					{
-						X = 948;
+						X += 0;
+					}
+					else if(X >= 948 || (Y <= 250 && Y >= 110 && (X <= 60 && X + 5 >= 65)) || (Y <= 250 && Y >= 110 && (X <= 160 && X + 5 >= 165)) || (Y <= 250 && Y >= 110 && (X <= 260 && X + 5 >= 265)) || (Y <= 250 && Y >= 110 && (X <= 360 && X + 5 >= 365)) || (Y <= 250 && Y >= 110 && (X <= 460 && X + 5 >= 465)) || (Y <= 250 && Y >= 110 && (X <= 560 && X + 5 >= 565)) || (Y <= 250 && Y >= 110 && (X <= 660 && X + 5 >= 665)) || (Y <= 250 && Y >= 110 && (X <= 760 && X + 5 >= 765)) || (Y <= 250 && Y >= 110 && (X <= 860 && X + 5 >= 865)) || (Y <= 250 && Y >= 110 && (X <= 960 && X + 5 >= 965)))
+					{
+						X += 0;
+					}
+					else if(X >= 948 || (Y <= 460 && Y >= 320 && (X <= 60 && X + 5 >= 65)) || (Y <= 460 && Y >= 320 && (X <= 160 && X + 5 >= 165)) || (Y <= 460 && Y >= 320 && (X <= 260 && X + 5 >= 265)) || (Y <= 460 && Y >= 320 && (X <= 360 && X + 5 >= 365)) || (Y <= 460 && Y >= 320 && (X <= 460 && X + 5 >= 465)) || (Y <= 460 && Y >= 320 && (X <= 560 && X + 5 >= 565)) || (Y <= 460 && Y >= 320 && (X <= 660 && X + 5 >= 665)) || (Y <= 460 && Y >= 320 && (X <= 760 && X + 5 >= 765)) || (Y <= 460 && Y >= 320 && (X <= 860 && X + 5 >= 865)))
+					{
+						X += 0;
 					}
 					else
 					{
@@ -224,10 +238,21 @@ public class Main
 					pacman_left.setVisible(true);
 					pacman_up.setVisible(false);
 					pacman_down.setVisible(false);
-					
 					if(X <= 10)
 					{
 						X = 10;
+					}
+					else if((Y <= 100 && (X >= 110 && X - 5 <= 105)) || (Y <= 100 && (X >= 210 && X - 5 <= 205)) || (Y <= 100 && (X >= 310 && X - 5 <= 305)) || (Y <= 100 && (X >= 410 && X - 5 <= 405)) || (Y <= 100 && (X >= 510 && X - 5 <= 505)) || (Y <= 100 && (X >= 610 && X - 5 <= 605)) || (Y <= 100 && (X >= 710 && X - 5 <= 705)) || (Y <= 100 && (X >= 810 && X - 5 <= 805)) || (Y <= 100 && (X >= 910 && X - 5 <= 905)))
+					{
+						X += 0;
+					}
+					else if((Y <= 250 && Y >= 110 && (X >= 110 && X - 5 <= 105)) || (Y <= 250 && Y >= 110 && (X >= 210 && X - 5 <= 205)) || (Y <= 250 && Y >= 110 && (X >= 310 && X - 5 <= 305)) || (Y <= 250 && Y >= 110 && (X >= 410 && X - 5 <= 405)) || (Y <= 250 && Y >= 110 && (X >= 510 && X - 5 <= 505)) || (Y <= 250 && Y >= 110 && (X >= 610 && X - 5 <= 605)) || (Y <= 250 && Y >= 110 && (X >= 710 && X - 5 <= 705)) || (Y <= 250 && Y >= 110 && (X >= 810 && X - 5 <= 805)) || (Y <= 250 && Y >= 110 && (X >= 910 && X - 5 <= 905)))
+					{
+						X += 0;
+					}
+					else if((Y <= 460 && Y >= 320 && (X >= 110 && X - 5 <= 105)) || (Y <= 460 && Y >= 320 && (X >= 210 && X - 5 <= 205)) || (Y <= 460 && Y >= 320 && (X >= 310 && X - 5 <= 305)) || (Y <= 460 && Y >= 320 && (X >= 410 && X - 5 <= 405)) || (Y <= 460 && Y >= 320 && (X >= 510 && X - 5 <= 505)) || (Y <= 460 && Y >= 320 && (X >= 610 && X - 5 <= 605)) || (Y <= 460 && Y >= 320 && (X >= 710 && X - 5 <= 705)) || (Y <= 460 && Y >= 320 && (X >= 810 && X - 5 <= 805)) || (Y <= 460 && Y >= 320 && (X >= 910 && X - 5 <= 905)))
+					{
+						X += 0;
 					}
 					else
 					{

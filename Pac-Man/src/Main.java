@@ -142,12 +142,12 @@ public class Main
 			borders.add(new Map("images/horizontalBorder.png",360,i,100,10));
 		}
 		
-		borders.add(new Map("images/horizontalBorder.png",150,0,10,600));
-		borders.add(new Map("images/horizontalBorder.png",150,700,10,650));
+		borders.add(new Map("images/horizontalBorder.png",150,100,10,500));
+		borders.add(new Map("images/horizontalBorder.png",150,700,10,200));
 		borders.add(new Map("images/horizontalBorder.png",300,0,10,308));
 		borders.add(new Map("images/horizontalBorder.png",300,400,10,360));
 		borders.add(new Map("images/horizontalBorder.png",300,850,10,350));
-		borders.add(new Map("images/horizontalBorder.png",450,0,10,610));
+		borders.add(new Map("images/horizontalBorder.png",450,100,10,510));
 		borders.add(new Map("images/horizontalBorder.png",450,700,10,650));
 		borders.add(new Map("images/horizontalBorder.png",600,0,10,308));
 		borders.add(new Map("images/horizontalBorder.png",600,400,10,360));
@@ -271,7 +271,7 @@ public class Main
 					{
 						Y = 10;
 					}
-					else if(((Y > 118 && Y - 5 <= 158) && !(X >= 610 && X <= 660 )) || ((Y > 268 && Y - 5 <= 308) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y > 455 && Y - 5 <= 455) && !((X >= 610 && X <= 660))) || ((Y > 610 && Y - 5 <= 610) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))))
+					else if(((Y > 118 && Y - 5 <= 158) && !((X >= 610 && X <= 660) || (X >= 0 && X <= 100) || (X >= 900 && X <= 1000))) || ((Y > 268 && Y - 5 <= 308) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y > 455 && Y - 5 <= 455) && !((X >= 610 && X <= 660) || (X >= 0 || X <= 100))) || ((Y > 610 && Y - 5 <= 610) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))))
 					{
 						Y -= 0;
 					}
@@ -283,6 +283,7 @@ public class Main
 				}
 				if(arg0.getKeyCode() == KeyEvent.VK_DOWN && !gameOver)
 				{
+					System.out.println(Y);
 					pacman_right.setVisible(false);
 					pacman_left.setVisible(false);
 					pacman_up.setVisible(false);
@@ -292,7 +293,7 @@ public class Main
 					{
 						Y = 611;
 					}
-					else if(((Y < 110 && Y + 5 >= 110) && !(X >= 610 && X <= 660 )) || ((Y < 260 && Y + 5 >= 260) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y < 560 && Y + 5 >= 560) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y < 410 && Y + 5 >= 410) && !(X >= 610 && X <= 660)))
+					else if(((Y < 110 && Y + 5 >= 110) && !((X >= 610 && X <= 660) || (X >= 0 && X <= 100) || (X >= 900 && X <= 1000))) || ((Y < 260 && Y + 5 >= 260) && !((X >= 310 && X <= 360) || (X >= 760 && X <= 810))) || ((Y < 560 && Y + 5 >= 560) && !(((X >= 310 && X <= 360) || (X >= 760 && X <= 810)))) || ((Y < 410 && Y + 5 >= 410) && !((X >= 610 && X <= 660) || (X >= 0 && X <= 100))))
 					{
 						Y += 0;
 					}
